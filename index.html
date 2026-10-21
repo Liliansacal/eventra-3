@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eventra | Tu Viaje Todo Incluido a los Mejores Eventos del Mundo</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['Syne', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              black: '#07070a',
+              card: '#0e0f17',
+              blue: '#0055FF',
+              cyan: '#00E5FF',
+              pink: '#FF007A',
+              orange: '#FF4500',
+              yellow: '#FFE600',
+              purple: '#8A2BE2'
+            }
+          },
+          animation: {
+            'gradient-x': 'gradient-x 8s ease infinite',
+            'float': 'float 4s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2s infinite',
+            'marquee': 'marquee 25s linear infinite',
+          },
+          keyframes: {
+            'gradient-x': {
+              '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
+              '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+            },
+            'float': {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-10px)' },
+            },
+            'pulseGlow': {
+              '0%, 100%': { opacity: '0.6', filter: 'drop-shadow(0 0 15px rgba(0,229,255,0.8))' },
+              '50%': { opacity: '1', filter: 'drop-shadow(0 0 30px rgba(0,85,255,1))' },
+            },
+            'marquee': {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos personalizados inspirados en SEPA y PURO */
+    body {
+      background-color: #07070a;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* Degradados de texto */
+    .text-gradient-sepa {
+      background: linear-gradient(135deg, #FF4500 0%, #FFE600 35%, #00E5FF 70%, #FF007A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-cyan {
+      background: linear-gradient(90deg, #00E5FF, #0055FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Barra cromática estilo SEPA */
+    .sepa-bar {
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #FF3D00 0%, #FFEA00 30%, #00E5FF 70%, #0055FF 100%);
+      box-shadow: 0 0 15px rgba(0,229,255,0.6);
+    }
+
+    .sepa-bar-sm {
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #FF3D00, #FFEA00, #00E5FF);
+    }
+
+    /* Glassmorphism */
+    .glass-nav {
+      background: rgba(14, 15, 23, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass-card {
+      background: rgba(18, 20, 32, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(0, 229, 255, 0.5);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0, 85, 255, 0.25);
+    }
+
+    /* Botón Neón Azul */
+    .btn-blue-glow {
+      background: linear-gradient(135deg, #0055FF 0%, #00E5FF 100%);
+      color: #ffffff;
+      box-shadow: 0 0 20px rgba(0, 85, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .btn-blue-glow:hover {
+      box-shadow: 0 0 35px rgba(0, 229, 255, 0.8);
+      transform: scale(1.03);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07070a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e2238;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0055FF;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-cyan selection:text-black">
+
+  <!-- BACKGROUND NEON ORBS -->
+  <div class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-brand-orange/20 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+  <div class="fixed top-1/3 right-10 w-[600px] h-[600px] bg-brand-blue/25 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+  <div class="fixed bottom-10 left-10 w-[500px] h-[500px] bg-brand-pink/20 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+
+  <!-- 1. ENCABEZADO (HEADER) -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- LOGO ESTILO EVENTRA / SEPA -->
+        <a href="#" class="flex items-center gap-2 group">
+          <span class="font-display text-3xl sm:text-4xl font-extrabold tracking-tighter text-white">
+            EVENTRA<span class="text-brand-cyan">.</span>
+          </span>
+          <div class="w-10 sm:w-16 sepa-bar transition-all duration-300 group-hover:w-20"></div>
+        </a>
+
+        <!-- NAVEGACIÓN DESKTOP -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-300">
+          <a href="#eventos" class="hover:text-brand-cyan transition-colors">Eventos Top</a>
+          <a href="#caracteristicas" class="hover:text-brand-cyan transition-colors">Qué Incluye</a>
+          <a href="#experiencias" class="hover:text-brand-cyan transition-colors">Experiencias VIP</a>
+          <a href="#comunidad" class="hover:text-brand-cyan transition-colors">Comunidad</a>
+        </nav>
+
+        <!-- CTA BOTÓN PRINCIPAL -->
+        <div class="flex items-center gap-4">
+          <a href="#reservar" class="btn-blue-glow px-6 py-3 rounded-full font-extrabold text-sm uppercase tracking-wider flex items-center gap-2">
+            <span>Haz clic. Haz maletas.</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. SECCIÓN PRINCIPAL (HERO) -->
+  <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      
+      <!-- BADGE SUPREMO -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-brand-cyan/40 text-brand-cyan text-xs sm:text-sm font-bold uppercase tracking-widest mb-8 animate-float">
+        <span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
+        <span>⚡ Viajes épicos a festivales & deportes globales</span>
+      </div>
+
+      <!-- TITULAR PRINCIPAL -->
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold uppercase tracking-tight leading-[0.95] mb-8">
+        VIVE LOS EVENTOS MÁS <br class="hidden sm:inline"/>
+        <span class="text-gradient-sepa animate-gradient-x">LEGENDARIOS DEL MUNDO</span>
+      </h1>
+
+      <!-- TEXTO DE APOYO -->
+      <p class="max-w-3xl mx-auto text-base sm:text-xl text-gray-300 font-medium mb-10 leading-relaxed">
+        Despreocúpate de la logística. En <strong class="text-white">Eventra</strong> unificamos tus <span class="text-brand-yellow font-semibold">entradas 100% oficiales</span>, <span class="text-brand-cyan font-semibold">hospedaje estratégico</span>, <span class="text-brand-orange font-semibold">traslados locales</span> y <span class="text-brand-pink font-semibold">actividades de integración</span> en un solo paquete. Tu única misión: disfrutar con tu grupo o hacer nuevos amigos en el camino.
+      </p>
+
+      <!-- BOTONES DE ACCIÓN EN HERO -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 mb-16">
+        <a href="#eventos" class="w-full sm:w-auto btn-blue-glow px-8 py-4 rounded-full font-extrabold text-base tracking-wide uppercase flex items-center justify-center gap-3">
+          <i class="fa-solid fa-ticket"></i>
+          <span>Explorar Paquetes 2026</span>
+        </a>
+        <a href="#caracteristicas" class="w-full sm:w-auto px-8 py-4 rounded-full glass-card font-bold text-base hover:bg-white/10 flex items-center justify-center gap-2">
+          <span>Ver cómo funciona</span>
+          <i class="fa-solid fa-play text-xs text-brand-cyan"></i>
+        </a>
+      </div>
+
+      <!-- STATS & BADGES RÁPIDOS -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto border-t border-white/10 pt-8">
+        <div class="text-center">
+          <p class="font-display text-3xl md:text-4xl font-extrabold text-brand-cyan">+45,000</p>
+          <p class="text-xs sm:text-sm text-gray-400 font-medium">Viajeros eufóricos</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display text-3xl md:text-4xl font-extrabold text-brand-yellow">100%</p>
+          <p class="text-xs sm:text-sm text-gray-400 font-medium">Tickets Garantizados</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display text-3xl md:text-4xl font-extrabold text-brand-pink">24/7</p>
+          <p class="text-xs sm:text-sm text-gray-400 font-medium">Soporte On-Site</p>
+        </div>
+        <div class="text-center">
+          <p class="font-display text-3xl md:text-4xl font-extrabold text-brand-orange">0 Estrés</p>
+          <p class="text-xs sm:text-sm text-gray-400 font-medium">Pagos Flexibles</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CARROUSEL / MARQUEE DE EVENTOS DESTACADOS -->
+    <div class="mt-16 overflow-hidden border-y border-white/10 py-4 bg-black/40">
+      <div class="flex whitespace-nowrap animate-marquee gap-8 items-center text-sm font-extrabold uppercase tracking-widest text-gray-400">
+        <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand-yellow"></i> Tecate Pa'l Norte MX</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-music text-brand-pink"></i> Tomorrowland Belgium</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-sun text-brand-orange"></i> Coachella Valley</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-flag-checkered text-brand-cyan"></i> Formula 1 GP Mexico</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-trophy text-brand-yellow"></i> Champions League Final</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-fire text-brand-orange"></i> Burning Man</span>
+        <span>•</span>
+        <!-- Duplicado para loop sin cortes -->
+        <span class="flex items-center gap-2"><i class="fa-solid fa-bolt text-brand-yellow"></i> Tecate Pa'l Norte MX</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-music text-brand-pink"></i> Tomorrowland Belgium</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-sun text-brand-orange"></i> Coachella Valley</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-flag-checkered text-brand-cyan"></i> Formula 1 GP Mexico</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-trophy text-brand-yellow"></i> Champions League Final</span>
+        <span>•</span>
+        <span class="flex items-center gap-2"><i class="fa-solid fa-fire text-brand-orange"></i> Burning Man</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SECCIÓN DE CARACTERÍSTICAS (3 TARJETAS CLAVE) -->
+  <section id="caracteristicas" class="py-24 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- ENCABEZADO DE SECCIÓN -->
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-tight mb-4">
+          ¿POR QUÉ VIAJAR CON <span class="text-gradient-cyan">EVENTRA</span>?
+        </h2>
+        <div class="w-24 h-1.5 sepa-bar mx-auto mb-6"></div>
+        <p class="text-gray-300 text-base sm:text-lg">
+          Te resolvemos toda la experiencia de principio a fin para que disfrutes sin fricción ni sorpresas.
+        </p>
+      </div>
+
+      <!-- GRID DE 3 TARJETAS PRINCIPALES -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- TARJETA 1 -->
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden group">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-orange to-brand-yellow flex items-center justify-center text-black text-2xl font-black mb-6 shadow-lg shadow-brand-orange/30 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-cubes"></i>
+          </div>
+          <span class="text-xs font-extrabold text-brand-orange tracking-widest uppercase mb-2 block">Packs Todo En Uno</span>
+          <h3 class="font-display text-2xl font-extrabold uppercase mb-4 text-white">
+            ENTRADAS + TRANSPORTE + HOSPEDAJE
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Olvídate de coordinar en 10 pestañas distintas. Te entregamos un paquete unificado con tickets verificados, hospedaje cercano al recinto y movilidad privada local.
+          </p>
+          <div class="sepa-bar-sm w-full"></div>
+        </div>
+
+        <!-- TARJETA 2 -->
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden group border-brand-cyan/30">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-blue to-brand-cyan flex items-center justify-center text-black text-2xl font-black mb-6 shadow-lg shadow-brand-cyan/30 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <span class="text-xs font-extrabold text-brand-cyan tracking-widest uppercase mb-2 block">Social Travelling</span>
+          <h3 class="font-display text-2xl font-extrabold uppercase mb-4 text-white">
+            METODOLOGÍA CURVA DE LAS 4C'S
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Diseñado para conectar, conocerse, compartir y conmover. Viaja solo o en grupo pequeño y conéctate con una comunidad afín que comparte tus mismos gustos.
+          </p>
+          <div class="sepa-bar-sm w-full"></div>
+        </div>
+
+        <!-- TARJETA 3 -->
+        <div class="glass-card rounded-3xl p-8 relative overflow-hidden group">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-pink to-purple-600 flex items-center justify-center text-white text-2xl font-black mb-6 shadow-lg shadow-brand-pink/30 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <span class="text-xs font-extrabold text-brand-pink tracking-widest uppercase mb-2 block">Seguridad Garantizada</span>
+          <h3 class="font-display text-2xl font-extrabold uppercase mb-4 text-white">
+            COMPRA SEGURA Y SIN FRAUDES
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6">
+            Di adiós a la reventa especulativa y las agencias fantasma. Todos los paquetes cuentan con garantía oficial, contratos transparentes y acompañamiento on-site.
+          </p>
+          <div class="sepa-bar-sm w-full"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. SECCIÓN DESTINOS / EVENTOS POPULARES -->
+  <section id="eventos" class="py-20 relative z-10 bg-black/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-brand-yellow font-extrabold text-xs sm:text-sm uppercase tracking-widest">Cartelera Exclusiva Eventra</span>
+          <h2 class="font-display text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-white mt-1">
+            PRÓXIMOS DESTINOS Y FESTIVALES
+          </h2>
+        </div>
+        <a href="#reservar" class="mt-4 md:mt-0 text-brand-cyan hover:underline font-bold text-sm flex items-center gap-2">
+          Ver calendario completo 2026-2027 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- GRID DE TARJETAS DE EVENTOS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- EVENTO 1: TECATE PA'L NORTE -->
+        <div class="glass-card rounded-3xl overflow-hidden group flex flex-col">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1000&auto=format&fit=crop" alt="Tecate Pa'l Norte Festival" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-brand-orange text-black font-extrabold text-xs uppercase px-3 py-1 rounded-full">
+              🇲🇽 Monterrey, México
+            </span>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white font-bold text-xs px-3 py-1 rounded-full">
+              ABRIL 2026
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-2xl font-extrabold text-white mb-2">TECATE PA'L NORTE</h3>
+              <p class="text-xs text-gray-400 mb-4 line-clamp-2">Abono 3 días + Hotel cercano + Shuttle privado local + Dinámicas de integración grupal.</p>
+            </div>
+            <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block">Paquete desde</span>
+                <span class="font-display text-xl font-extrabold text-brand-cyan">$890 USD</span>
+              </div>
+              <a href="#reservar" class="btn-blue-glow text-xs font-bold px-4 py-2 rounded-full">Ver Pack</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENTO 2: TOMORROWLAND -->
+        <div class="glass-card rounded-3xl overflow-hidden group flex flex-col">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop" alt="Tomorrowland Festival" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-brand-purple text-white font-extrabold text-xs uppercase px-3 py-1 rounded-full">
+              🇧🇪 Boom, Bélgica
+            </span>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white font-bold text-xs px-3 py-1 rounded-full">
+              JULIO 2026
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-2xl font-extrabold text-white mb-2">TOMORROWLAND</h3>
+              <p class="text-xs text-gray-400 mb-4 line-clamp-2">Full Madness Pass + Hospedaje exclusivo + Traslados colectivos + Experiencias culturales europeas.</p>
+            </div>
+            <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block">Paquete desde</span>
+                <span class="font-display text-xl font-extrabold text-brand-pink">$2,450 USD</span>
+              </div>
+              <a href="#reservar" class="btn-blue-glow text-xs font-bold px-4 py-2 rounded-full">Ver Pack</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- EVENTO 3: COACHELLA -->
+        <div class="glass-card rounded-3xl overflow-hidden group flex flex-col">
+          <div class="relative h-64 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop" alt="Coachella Festival" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent"></div>
+            <span class="absolute top-4 left-4 bg-brand-yellow text-black font-extrabold text-xs uppercase px-3 py-1 rounded-full">
+              🇺🇸 California, USA
+            </span>
+            <span class="absolute top-4 right-4 bg-black/70 backdrop-blur-md text-white font-bold text-xs px-3 py-1 rounded-full">
+              ABRIL 2026
+            </span>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <h3 class="font-display text-2xl font-extrabold text-white mb-2">COACHELLA VALLEY</h3>
+              <p class="text-xs text-gray-400 mb-4 line-clamp-2">Passes 3 Días + Resort en Palm Springs + Transfer directo + Actividades de integración.</p>
+            </div>
+            <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block">Paquete desde</span>
+                <span class="font-display text-xl font-extrabold text-brand-yellow">$1,990 USD</span>
+              </div>
+              <a href="#reservar" class="btn-blue-glow text-xs font-bold px-4 py-2 rounded-full">Ver Pack</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. BANNER LLAMATIVO FINAL DE CONVERSIÓN -->
+  <section id="reservar" class="py-24 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="glass-card rounded-[40px] p-8 sm:p-14 text-center relative overflow-hidden border-2 border-brand-cyan/40">
+        
+        <!-- ELEMENTOS DECORATIVOS -->
+        <div class="absolute -top-12 -left-12 w-40 h-40 bg-brand-orange/30 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-brand-cyan/30 rounded-full blur-2xl pointer-events-none"></div>
+
+        <span class="text-brand-cyan font-extrabold text-xs sm:text-sm uppercase tracking-widest block mb-4">
+          🚀 ¿LISTO PARA LA MEJOR EXPERIENCIA DE TU VIDA?
+        </span>
+
+        <h2 class="font-display text-3xl sm:text-6xl font-extrabold uppercase tracking-tight mb-6 leading-tight">
+          ARMEMOS TU VIAJE A MEDIDA <br>
+          <span class="text-gradient-sepa">EN MENOS DE 2 MINUTOS</span>
+        </h2>
+
+        <p class="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto mb-10">
+          Únete a miles de jóvenes que ya no se pierden ningún festival. Conecta con otros apasionados y asegura tu entrada oficial.
+        </p>
+
+        <!-- FORMULARIO RÁPIDO -->
+        <form class="max-w-xl mx-auto flex flex-col sm:flex-row gap-3 mb-8" onsubmit="event.preventDefault(); alert('¡Gracias! Un asesor de Eventra se pondrá en contacto contigo.');">
+          <input type="email" placeholder="Ingresa tu email o WhatsApp..." required class="flex-1 bg-black/60 border border-white/20 rounded-full px-6 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan text-sm">
+          <button type="submit" class="btn-blue-glow px-8 py-4 rounded-full font-extrabold text-sm uppercase tracking-wider flex items-center justify-center gap-2 whitespace-nowrap">
+            <span>Haz clic. Haz maletas.</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+
+        <p class="text-xs text-gray-500">
+          🔒 Entradas 100% Garantizadas. Reserva flexible disponible.
+        </p>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. PIE DE PÁGINA (FOOTER) -->
+  <footer class="border-t border-white/10 py-12 bg-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <div class="flex items-center gap-3">
+          <span class="font-display text-2xl font-extrabold tracking-tighter text-white">
+            EVENTRA<span class="text-brand-cyan">.</span>
+          </span>
+          <div class="w-12 sepa-bar"></div>
+        </div>
+
+        <p class="text-xs text-gray-500 text-center">
+          © 2026 Eventra Inc. Todos los derechos reservados. Plataforma de Social Travelling & Gig Tripping.
+        </p>
+
+        <div class="flex items-center gap-4 text-gray-400 text-lg">
+          <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-spotify"></i></a>
+          <a href="#" class="hover:text-brand-cyan transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
